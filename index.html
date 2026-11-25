@@ -8,228 +8,277 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #202020;
+      --muted: #b0b0b0;
+      --line: #e8e8e8;
+      --accent: #986c78;
+    }
+
+    * { box-sizing: border-box; }
 
     body {
+      margin: 0;
       min-height: 100vh;
       display: grid;
       place-items: center;
-      padding: 32px 20px;
+      padding: 24px;
       font-family: Inter, "Segoe UI", sans-serif;
-      background: #c9a89c;
-      color: #1c1c1c;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 50% 48%, rgba(255,255,255,.08), transparent 32%),
+        linear-gradient(135deg, #9eaaa8 0%, #beb4b4 48%, #17182d 100%);
     }
 
     .card {
-      width: min(920px, 100%);
+      width: min(1080px, calc(100vw - 48px));
+      min-height: 620px;
       display: grid;
-      grid-template-columns: 1fr 1.08fr;
+      grid-template-columns: 42.5% 57.5%;
+      padding: 12px;
+      border-radius: 32px;
       background: #fff;
-      border-radius: 28px;
-      box-shadow: 0 24px 50px rgba(90, 50, 40, 0.18);
-      overflow: hidden;
+      box-shadow: 0 28px 65px rgba(25, 27, 43, .28);
     }
 
     .form-panel {
-      padding: 56px 48px 40px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding: 68px 48px 32px;
     }
 
     h1 {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.4px;
+      margin: 0;
+      font-size: 30px;
+      line-height: 1.2;
+      font-weight: 600;
+      letter-spacing: -1px;
     }
 
     .subtitle {
-      margin-top: 28px;
-      margin-bottom: 22px;
-      font-size: 13px;
-      color: #b5b5b5;
-      text-align: center;
+      margin: 45px 0 22px;
+      color: #777;
+      font-size: 12px;
+      font-weight: 500;
     }
 
     form {
-      width: min(280px, 100%);
+      width: min(290px, 100%);
       display: flex;
       flex-direction: column;
     }
 
     .field {
       position: relative;
-      margin-bottom: 14px;
+      display: block;
+      margin-bottom: 12px;
     }
 
     input {
       width: 100%;
       height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
       padding: 0 14px;
-      border: 1px solid #ececec;
-      border-radius: 8px;
       background: #fff;
-      font: inherit;
-      font-size: 13px;
       color: #333;
+      font: 400 12px Inter, sans-serif;
       outline: none;
     }
 
-    input::placeholder { color: #c5c5c5; }
+    input::placeholder { color: #bababa; }
 
     input:focus {
-      border-color: #c9a8b0;
+      border-color: #c29aa5;
+      box-shadow: 0 0 0 3px rgba(152,108,120,.08);
     }
 
-    .field.password input { padding-right: 40px; }
+    .password input { padding-right: 42px; }
 
     .eye {
       position: absolute;
       right: 10px;
       top: 50%;
+      width: 28px;
+      height: 28px;
       transform: translateY(-50%);
-      border: 0;
-      background: transparent;
-      color: #bdbdbd;
-      cursor: pointer;
       display: grid;
       place-items: center;
-      padding: 4px;
+      border: 0;
+      background: transparent;
+      color: #aaa;
+      cursor: pointer;
+      padding: 0;
     }
 
     .recovery {
       align-self: flex-end;
-      margin: 2px 0 18px;
-      font-size: 11px;
-      color: #b0b0b0;
+      margin: 1px 0 16px;
+      color: #b7b7b7;
+      font-size: 9px;
       text-decoration: none;
     }
-
-    .recovery:hover { color: #8a6a72; }
 
     .signin {
       height: 44px;
       border: 0;
-      border-radius: 8px;
-      background: #8d6b74;
+      border-radius: 7px;
+      background: var(--accent);
       color: #fff;
-      font: inherit;
-      font-size: 14px;
-      font-weight: 500;
+      font: 500 12px Inter, sans-serif;
       cursor: pointer;
     }
 
-    .signin:hover { background: #7d5d66; }
+    .signin:hover { background: #87616c; }
 
     .message {
-      min-height: 18px;
-      margin-top: 10px;
-      font-size: 12px;
+      min-height: 16px;
+      margin: 7px 0 0;
+      color: var(--accent);
+      font-size: 10px;
       text-align: center;
-      color: #8d6b74;
     }
 
     .divider {
-      width: min(280px, 100%);
-      margin: 22px 0 18px;
+      width: min(290px, 100%);
       display: grid;
       grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      gap: 12px;
-      color: #c8c8c8;
-      font-size: 12px;
+      gap: 10px;
+      margin: 20px 0 16px;
+      color: #b7b7b7;
+      font-size: 9px;
     }
 
     .divider::before,
     .divider::after {
       content: "";
       height: 1px;
-      background: #ececec;
+      background: #ededed;
     }
 
     .socials {
       display: flex;
-      gap: 16px;
-      align-items: center;
+      gap: 12px;
     }
 
     .social {
-      width: 36px;
-      height: 36px;
-      border: 0;
-      background: transparent;
-      border-radius: 8px;
-      cursor: pointer;
+      width: 68px;
+      height: 44px;
       display: grid;
       place-items: center;
-      padding: 0;
-    }
-
-    .social.apple {
+      border: 1px solid #efefef;
+      border-radius: 8px;
       background: #fff;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-      border: 1px solid #f2f2f2;
+      cursor: pointer;
+      box-shadow: 0 5px 14px rgba(0,0,0,.025);
     }
 
     .social:hover { transform: translateY(-1px); }
 
     .art {
-      margin: 16px 16px 16px 0;
-      border-radius: 22px;
       position: relative;
+      min-height: 596px;
       overflow: hidden;
-      min-height: 460px;
-      background: linear-gradient(180deg, #f7c7a2 0%, #f3b48c 18%, #eea3a4 46%, #c58eb4 70%, #7b68a4 100%);
-    }
-
-    .sky, .hills, .ground {
-      position: absolute;
-      inset: 0;
+      border-radius: 20px;
+      background: linear-gradient(180deg, #edb4b8 0%, #ffc5a4 20%, #f1ddd4 34%, #aaaacb 58%, #38436e 100%);
     }
 
     .sun {
       position: absolute;
-      width: 108px;
-      height: 108px;
+      left: 11%;
+      top: 12%;
+      width: 112px;
+      height: 112px;
       border-radius: 50%;
-      left: 22%;
-      top: 16%;
-      background: radial-gradient(circle, #fff8e4 0%, #ffe3a4 42%, rgba(255, 210, 140, 0.15) 68%, rgba(255, 210, 140, 0) 72%);
+      background: rgba(255, 242, 217, .95);
+      box-shadow:
+        0 0 32px 16px rgba(255, 231, 196, .45),
+        0 0 70px 30px rgba(255, 232, 193, .18);
+    }
+
+    .birds,
+    .bird {
+      position: absolute;
+      z-index: 5;
+    }
+
+    .birds {
+      right: 40px;
+      top: 35px;
+      width: 130px;
+      height: 120px;
+      opacity: .9;
+    }
+
+    .bird { width: 28px; height: 16px; }
+    .bird::before,
+    .bird::after {
+      content: "";
+      position: absolute;
+      width: 13px;
+      height: 7px;
+      border-top: 2px solid #27304a;
+      border-radius: 50%;
+    }
+    .bird::before { left: 1px; transform: rotate(-28deg); }
+    .bird::after { right: 1px; transform: rotate(28deg); }
+
+    .bird:nth-child(1) { left: 62px; top: 12px; transform: scale(.8); }
+    .bird:nth-child(2) { left: 82px; top: 32px; transform: scale(.55); }
+    .bird:nth-child(3) { left: 42px; top: 42px; transform: scale(.65); }
+
+    .land {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 74%;
     }
 
     .caption {
       position: absolute;
       left: 28px;
-      bottom: 52px;
-      max-width: 180px;
+      bottom: 42px;
+      z-index: 8;
+      max-width: 190px;
+      margin: 0;
       color: #fff;
-      font-size: 15px;
-      font-weight: 500;
+      font-size: 13px;
+      font-weight: 600;
       line-height: 1.35;
-      text-shadow: 0 1px 8px rgba(60, 30, 70, 0.25);
+      text-shadow: 0 2px 12px rgba(34,35,70,.25);
     }
 
     .dots {
       position: absolute;
       left: 28px;
-      bottom: 26px;
+      bottom: 20px;
+      z-index: 8;
       display: flex;
       gap: 6px;
     }
 
     .dots span {
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.45);
+      background: rgba(255,255,255,.55);
     }
 
-    .dots span.active { background: #fff; }
+    .dots .active { background: #fff; }
 
-    @media (max-width: 760px) {
-      .card { grid-template-columns: 1fr; }
-      .form-panel { padding: 40px 24px 28px; }
-      .art { margin: 0 16px 16px; min-height: 280px; }
+    @media (max-width: 820px) {
+      body { padding: 16px; }
+      .card {
+        width: min(430px, calc(100vw - 32px));
+        min-height: auto;
+        grid-template-columns: 1fr;
+      }
+      .form-panel { min-height: 520px; padding: 55px 24px 28px; }
+      .art { min-height: 280px; margin-top: 4px; }
+      .subtitle { margin-top: 36px; }
     }
   </style>
 </head>
@@ -241,17 +290,17 @@
 
       <form id="login-form">
         <label class="field">
-          <span class="sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Email</span>
-          <input id="email" type="email" name="email" placeholder="Email" autocomplete="email" required>
+          <span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email</span>
+          <input id="email" type="email" placeholder="Email" autocomplete="email" required>
         </label>
 
         <label class="field password">
-          <span class="sr" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Password</span>
-          <input id="password" type="password" name="password" placeholder="Password" autocomplete="current-password" required>
+          <span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Password</span>
+          <input id="password" type="password" placeholder="Password" autocomplete="current-password" required>
           <button class="eye" type="button" id="toggle-password" aria-label="Show password">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
-              <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/>
-              <circle cx="12" cy="12" r="3"/>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12Z"/>
+              <circle cx="12" cy="12" r="2.8"/>
             </svg>
           </button>
         </label>
@@ -265,47 +314,71 @@
 
       <div class="socials">
         <button class="social" type="button" aria-label="Continue with Google">
-          <svg width="18" height="18" viewBox="0 0 48 48">
-            <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 8 3.1l5.7-5.7C34.2 6.1 29.4 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.2-.1-2.3-.4-3.5z"/>
-            <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 12 24 12c3.1 0 5.8 1.2 8 3.1l5.7-5.7C34.2 6.1 29.4 4 24 4 16.3 4 9.6 8.3 6.3 14.7z"/>
-            <path fill="#4CAF50" d="M24 44c5.2 0 10-2 13.6-5.2l-6.3-5.3C29.2 35.1 26.7 36 24 36c-5.3 0-9.7-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/>
-            <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-1.1 3.2-3.5 5.7-6.7 7.1l6.3 5.3C37.4 38.3 44 33 44 24c0-1.2-.1-2.3-.4-3.5z"/>
+          <svg width="20" height="20" viewBox="0 0 48 48">
+            <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 8 3.1l5.7-5.7C34.2 6.1 29.4 4 24 4A20 20 0 1 0 24 44c11 0 20-8.9 20-20 0-1.2-.1-2.3-.4-3.5Z"/>
+            <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 12 24 12c3.1 0 5.8 1.2 8 3.1l5.7-5.7C34.2 6.1 29.4 4 24 4A20 20 0 0 0 6.3 14.7Z"/>
+            <path fill="#4CAF50" d="M24 44c5.2 0 10-2 13.6-5.2l-6.3-5.3C29.2 35.1 26.7 36 24 36c-5.3 0-9.7-3.3-11.3-8l-6.5 5A20 20 0 0 0 24 44Z"/>
+            <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3a12 12 0 0 1-4.1 5.6l6.3 5.3C37.4 38.3 44 33 44 24c0-1.2-.1-2.3-.4-3.5Z"/>
           </svg>
         </button>
-        <button class="social apple" type="button" aria-label="Continue with Apple">
-          <svg width="16" height="18" viewBox="0 0 14 17" fill="#111">
-            <path d="M11.4 8.9c0-2.2 1.8-3.2 1.9-3.3-1-1.5-2.6-1.7-3.2-1.7-1.3-.1-2.6.8-3.3.8s-1.7-.8-2.9-.8c-1.5 0-2.8.9-3.6 2.2-1.5 2.7-.4 6.6 1.1 8.8.7 1.1 1.6 2.3 2.7 2.2 1.1 0 1.5-.7 2.8-.7s1.7.7 2.9.7 1.9-1.1 2.6-2.1c.8-1.2 1.1-2.3 1.2-2.4-.1 0-2.2-.8-2.2-3.7zM9.5 2.7c.6-.7 1-1.7.9-2.7-.9 0-1.9.6-2.5 1.3-.6.6-1.1 1.6-.9 2.6 1 .1 1.9-.5 2.5-1.2z"/>
+
+        <button class="social" type="button" aria-label="Continue with Apple">
+          <svg width="18" height="20" viewBox="0 0 14 17" fill="#111">
+            <path d="M11.4 8.9c0-2.2 1.8-3.2 1.9-3.3-1-1.5-2.6-1.7-3.2-1.7-1.3-.1-2.6.8-3.3.8s-1.7-.8-2.9-.8c-1.5 0-2.8.9-3.6 2.2-1.5 2.7-.4 6.6 1.1 8.8.7 1.1 1.6 2.3 2.7 2.2 1.1 0 1.5-.7 2.8-.7s1.7.7 2.9.7 1.9-1.1 2.6-2.1c.8-1.2 1.1-2.3 1.2-2.4-.1 0-2.2-.8-2.2-3.7ZM9.5 2.7c.6-.7 1-1.7.9-2.7-.9 0-1.9.6-2.5 1.3-.6.6-1.1 1.6-.9 2.6 1 .1 1.9-.5 2.5-1.2Z"/>
           </svg>
         </button>
+
         <button class="social" type="button" aria-label="Continue with Facebook">
-          <svg width="22" height="22" viewBox="0 0 24 24">
+          <svg width="20" height="20" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="10" fill="#1877F2"/>
-            <path fill="#fff" d="M13.4 18.5v-5.1h1.7l.3-2h-2V10.1c0-.6.2-1 .9-1h1.1V7.2c-.2 0-.9-.1-1.7-.1-1.7 0-2.8 1-2.8 2.9v1.4H9.2v2h1.7v5.1h2.5z"/>
+            <path fill="#fff" d="M13.4 18.5v-5.1h1.7l.3-2h-2V10.1c0-.6.2-1 .9-1h1.1V7.2c-.2 0-.9-.1-1.7-.1-1.7 0-2.8 1-2.8 2.9v1.4H9.2v2h1.7v5.1h2.5Z"/>
           </svg>
         </button>
       </div>
     </section>
 
-    <aside class="art" aria-hidden="true">
+    <aside class="art" aria-label="Winter landscape illustration">
       <div class="sun"></div>
-      <svg class="hills" viewBox="0 0 420 520" preserveAspectRatio="xMidYMid slice">
-        <path d="M0 230 C70 200 120 250 190 220 C250 196 300 188 420 210 V520 H0 Z" fill="#d9c4e4" opacity="0.45"/>
-        <path d="M0 300 C90 250 130 330 210 286 C270 254 330 268 420 240 V520 H0 Z" fill="#f4eef8"/>
-        <path d="M248 230 C300 168 348 196 390 132 C420 88 450 150 450 150 V540 H210 C214 420 230 300 248 230 Z" fill="#5b4c84"/>
-        <path d="M318 168 C352 142 386 156 418 124 L446 156 C400 196 360 186 318 214 Z" fill="#f7f3fb"/>
-        <g fill="#2a2144">
-          <path d="M348 156 c6 -16 4 -16 -2 -2 c8 -12 16 -6 6 6 c8 -8 14 0 4 8 c-4 4 -10 2 -8 -12 z"/>
-          <path d="M378 142 c5 -14 3 -12 -1 0 c6 -10 12 -4 4 6 c6 -6 10 0 3 7 c-4 3 -8 1 -6 -13 z"/>
-          <path d="M70 392 h3 v78 h-3 z"/>
-          <path d="M71 404 l-16 -12 2 4 14 10 z M71 418 l18 -8 -2 4 -16 7 z M71 432 l-12 8 2 3 10 -8 z M71 400 l10 -16 -2 3 -8 13 z"/>
-          <path d="M128 360 h3 v110 h-3 z"/>
-          <path d="M129 376 l-20 -14 2 5 18 12 z M129 396 l22 -10 -2 5 -20 9 z M129 416 l-16 10 2 3 14 -10 z M129 368 l14 -18 -3 4 -11 14 z"/>
-          <path d="M186 400 h3 v78 h-3 z"/>
-          <path d="M187 414 l-14 -10 2 4 12 8 z M187 430 l16 -6 -2 4 -14 5 z M187 406 l8 -14 -2 3 -6 11 z"/>
-          <path d="M244 388 h3 v86 h-3 z"/>
-          <path d="M245 402 l-16 -12 2 4 14 10 z M245 420 l18 -8 -2 4 -16 7 z M245 396 l12 -16 -2 3 -10 13 z"/>
+      <div class="birds" aria-hidden="true">
+        <i class="bird"></i><i class="bird"></i><i class="bird"></i>
+      </div>
+
+      <svg class="land" viewBox="0 0 600 500" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+        <defs>
+          <linearGradient id="snow" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#faf6ff"/>
+            <stop offset="1" stop-color="#cbd0ed"/>
+          </linearGradient>
+          <linearGradient id="mountain" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#3d4a79"/>
+            <stop offset="1" stop-color="#253153"/>
+          </linearGradient>
+        </defs>
+
+        <path d="M0 170 C90 130 155 190 225 145 C310 94 390 155 600 90 V500 H0Z" fill="#9d9fb9" opacity=".48"/>
+        <path d="M0 218 C105 178 176 235 280 172 C392 104 477 160 600 118 V500 H0Z" fill="#e6d8ef" opacity=".65"/>
+        <path d="M0 268 C80 240 170 270 238 232 C332 180 440 216 600 162 V500 H0Z" fill="url(#snow)"/>
+        <path d="M305 220 C374 145 446 178 510 118 C545 85 572 100 600 70 V500 H250 C265 408 285 300 305 220Z" fill="#7d86ad"/>
+        <path d="M330 230 C405 150 466 190 520 130 L600 75 V500 H300 C304 390 316 300 330 230Z" fill="url(#mountain)"/>
+        <path d="M350 214 C420 164 462 190 510 136 L600 85 V175 C532 212 442 246 350 214Z" fill="#dfe2f3" opacity=".88"/>
+
+        <path d="M0 380 C115 328 222 380 320 330 C420 278 510 318 600 260 V500 H0Z" fill="#53648e" opacity=".62"/>
+        <path d="M0 410 C150 372 250 420 370 350 C470 292 540 330 600 302 V500 H0Z" fill="#33405f"/>
+
+        <g fill="#252f49">
+          <g transform="translate(62 335)"><rect x="12" y="25" width="5" height="64"/><path d="M14 0 1 48h26Z"/><path d="M14 20 0 72h28Z"/></g>
+          <g transform="translate(145 330) scale(.75)"><rect x="12" y="25" width="5" height="64"/><path d="M14 0 1 48h26Z"/><path d="M14 20 0 72h28Z"/></g>
+          <g transform="translate(210 300) scale(1.05)"><rect x="12" y="25" width="5" height="64"/><path d="M14 0 1 48h26Z"/><path d="M14 20 0 72h28Z"/></g>
+          <g transform="translate(315 300) scale(.8)"><rect x="12" y="25" width="5" height="64"/><path d="M14 0 1 48h26Z"/><path d="M14 20 0 72h28Z"/></g>
+          <g transform="translate(390 270) scale(1.15)"><rect x="12" y="25" width="5" height="64"/><path d="M14 0 1 48h26Z"/><path d="M14 20 0 72h28Z"/></g>
+        </g>
+
+        <g fill="#12182d">
+          <g transform="translate(0 390)"><path d="M0 20c40-24 82-20 120-2l-18 20H0Z"/><rect x="8" y="38" width="5" height="72"/></g>
+          <g transform="translate(118 345)"><path d="M0 20c40-24 82-20 120-2l-18 20H0Z"/></g>
         </g>
       </svg>
+
       <p class="caption">Finally a login page that doesn't suck</p>
       <div class="dots"><span class="active"></span><span></span><span></span></div>
     </aside>
@@ -323,12 +396,12 @@
       toggle.setAttribute("aria-label", hidden ? "Hide password" : "Show password");
     });
 
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
+    form.addEventListener("submit", event => {
+      event.preventEvent();
       message.textContent = "Signed in as " + document.getElementById("email").value;
     });
 
-    document.querySelectorAll(".social").forEach((button) => {
+    document.querySelectorAll(".social").forEach(button => {
       button.addEventListener("click", () => {
         message.textContent = button.getAttribute("aria-label");
       });
